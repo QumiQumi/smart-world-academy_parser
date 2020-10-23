@@ -23,6 +23,7 @@ $("#input-form").submit((event) => {
 	makeFields(file.fields);
 });
 
+//Парсит поле buttons
 function makeButtons(buttonsArray) {
 	var buttonsForm = $("#buttons");
 	buttonsForm.empty();
@@ -32,32 +33,63 @@ function makeButtons(buttonsArray) {
 	});
 	return true;
 }
+//Парсит поле fields
 function makeFields(fieldsArray) {
 	var fieldsForm = $("#fields");
 	fieldsForm.empty();
 	if (fieldsArray == null) return;
-	fieldsArray.forEach((field) => {
-		if (field.input.type == "color" || field.input.type == "technology") {
-			var checkboxArray = "";
-			switch (field.input.type) {
-				case value:
-					"color";
-					checkboxArray = field.input.colors;
-					break;
-				case value:
-					"technology";
-					checkboxArray = field.input.technologies;
-					break;
-				default:
-					break;
-			}
 
-			$("<div>")
-				.attr({ class: "fields__line" })
-				.append($("<label/>").text(field.label))
-				.append(function () {
-					array.forEach((element) => {});
-					$("<input/>").text(field.label).attr({
+	fieldsArray.forEach((field) => {
+		$("<div>")
+			.attr({ class: "fields__line" })
+			.append($("<label/>").text(field.label))
+			.append(() => {
+				var needCheckboxes = false;
+				var checkboxArray = [];
+
+				for (var key in field.input) {
+					if (Array.isArray(field.input[key])) {
+						needCheckboxes = true;
+						checkboxArray = field.input[key];
+					}
+				}
+				// если в field.input есть массив - значит это чекбоксы
+				if (needCheckboxes) {
+					var checkboxes = $("<div>").attr({
+						class: "fields__checkboxes",
+					});
+					var classForLabel = (field.input.type = "color"
+						? "fields__color"
+						: "");
+
+					checkboxArray.forEach((element) => {
+						checkboxes.append(
+							$("<div>")
+								.attr({ class: "fields__line" })
+								.append(
+									$("<input/>").attr({
+										type: "checkbox",
+										name: "checkbox",
+										id: element,
+									})
+								)
+								.append(
+									$("<label/>")
+										.attr({
+											for: element,
+											class: classForLabel,
+										})
+										.append(
+											$("<span>").text(element).css({
+												"background-color": element,
+											})
+										)
+								)
+						);
+					});
+					return checkboxes;
+				} else {
+					return $("<input/>").attr({
 						type: field.input.type,
 						required: field.input.required,
 						placeholder: field.input.placeholder,
@@ -65,26 +97,12 @@ function makeFields(fieldsArray) {
 						mask: field.input.mask,
 						filetype: field.input.filetype,
 					});
-				})
-				.appendTo(fieldsForm);
-		} else {
-			$("<div>")
-				.attr({ class: "fields__line" })
-				.append($("<label/>").text(field.label))
-				.append(
-					$("<input/>").text(field.label).attr({
-						type: field.input.type,
-						required: field.input.required,
-						placeholder: field.input.placeholder,
-						multiple: field.input.multiple,
-						mask: field.input.mask,
-						filetype: field.input.filetype,
-					})
-				)
-				.appendTo(fieldsForm);
-		}
+				}
+			})
+			.appendTo(fieldsForm);
 	});
 }
+
 function fillDropdown() {
 	fileNames.forEach((name) => {
 		$("#select").append(
