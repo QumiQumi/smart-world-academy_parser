@@ -6,13 +6,25 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="./styles/style.css">
 </head>
 
 <body>
+	<form method="get" id="input-form">
+		<label for="files">Выберете файл</label>
+		<select name="select" id="select">
+		</select>
+		<input type="submit" value="Выбрать">
+	</form>
+	<form id=parse-form>
+
+	</form>
+
 
 </body>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="index.js"></script>
+<script type="module" src="index.js"></script>
 
 </html>

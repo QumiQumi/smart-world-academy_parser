@@ -1,0 +1,17 @@
+doctype html
+html(lang='en')
+	head
+		meta(charset='UTF-8')
+		meta(name='viewport' content='width=device-width, initial-scale=1.0')
+		title Document
+	body
+		form#input-form(method='get')
+			label(for='files') Выберете файл
+			select#select(name='select')
+			input(type='submit' value='Выбрать')
+		form#parse-form
+			.buttons#buttons
+			.fields#fields
+			.references#references
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js')
+		script(src='index.js')
