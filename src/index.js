@@ -15,7 +15,6 @@ console.log(fileNames);
 fillDropdown();
 ///////////////////
 makeFields(files.get("interview").fields);
-addKeypressMaskListeners();
 ////////////////////////
 $("#input-form").submit((event) => {
 	event.preventDefault();
@@ -24,7 +23,7 @@ $("#input-form").submit((event) => {
 	console.log(file);
 	makeButtons(file.buttons);
 	makeFields(file.fields);
-	addKeypressMaskListeners();
+	makeRefs(file.references);
 });
 
 //Парсит поле buttons
@@ -123,15 +122,43 @@ function makeFields(fieldsArray) {
 						id: "input-" + i,
 						maxlength: maxLength,
 						minlength: maxLength,
+						min: "0",
 					});
 				}
 			})
 			.appendTo(fieldsForm);
 	});
+	addKeypressMaskListeners();
 }
-
+//Парсит поле references
+function makeRefs(refsArray) {
+	var refsForm = $("#refs");
+	refsForm.empty();
+	if (refsArray == null) return;
+	refsArray.forEach((ref, i) => {
+		$("<div>")
+			.attr({ class: "refs__line" })
+			.append(function () {
+				if (ref.input != null) {
+					return $("<input/>").attr({
+						type: ref.input.type,
+						required: ref.input.required,
+						checked: ref.input.checked,
+						id: "input-" + i,
+					});
+				} else {
+					return $("<label>")
+						.attr({ for: "input-" + i })
+						.append($("<span>").text(ref["text without ref"]))
+						.append(
+							$("<a>").text(ref.text).attr({ href: ref.ref })
+						);
+				}
+			})
+			.appendTo(refsForm);
+	});
+}
 // Обработка маски input
-
 function addKeypressMaskListeners() {
 	$("input[mask]")
 		.keydown(function (e) {
@@ -177,7 +204,6 @@ function addKeypressMaskListeners() {
 
 	// рекурсивно добавляем значения из маски в инпут
 	function addMaskSymbol(input, mask, currentSymbol) {
-		console.log(typeof input.val());
 		var value = mask[currentSymbol];
 		input.val(input.val() + value);
 
