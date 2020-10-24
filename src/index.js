@@ -135,28 +135,25 @@ function makeRefs(refsArray) {
 	var refsForm = $("#refs");
 	refsForm.empty();
 	if (refsArray == null) return;
+	var refsLine = $("<div>").attr({ class: "refs__line" });
 	refsArray.forEach((ref, i) => {
-		$("<div>")
-			.attr({ class: "refs__line" })
-			.append(function () {
-				if (ref.input != null) {
-					return $("<input/>").attr({
-						type: ref.input.type,
-						required: ref.input.required,
-						checked: ref.input.checked,
-						id: "input-" + i,
-					});
-				} else {
-					return $("<label>")
-						.attr({ for: "input-" + i })
-						.append($("<span>").text(ref["text without ref"]))
-						.append(
-							$("<a>").text(ref.text).attr({ href: ref.ref })
-						);
-				}
-			})
-			.appendTo(refsForm);
+		refsLine.append(function () {
+			if (ref.input != null) {
+				return $("<input/>").attr({
+					type: ref.input.type,
+					required: ref.input.required,
+					checked: ref.input.checked,
+					id: "input-" + i,
+				});
+			} else {
+				return $("<label>")
+					.attr({ for: "input-" + i })
+					.append($("<span>").text(ref["text without ref"]))
+					.append($("<a>").text(ref.text).attr({ href: ref.ref }));
+			}
+		});
 	});
+	refsForm.append(refsLine);
 }
 // Обработка маски input
 function addKeypressMaskListeners() {
