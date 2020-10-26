@@ -1,5 +1,4 @@
 # smart-world-academy_parser
 
 JSON парсер
-Установить необходимые зависимости: npm install
-Запустить сервер: npm run start
+Запустить index.html в /src

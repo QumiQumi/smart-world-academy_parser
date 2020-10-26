@@ -14,24 +14,24 @@ body {
 		transition: 0.2s;
 	}
 	#parse-form {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+		// display: flex;
+		// flex-direction: column;
+		// align-items: center;
 		padding: 1em;
 		border-radius: 5px;
 		filter: drop-shadow(0 0 12.5px #f0f0f0);
 		background-color: #ffffff;
 		> div {
 			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: space-between;
 			margin-top: 1em;
 		}
 		.buttons {
 			justify-content: space-around;
+			max-width: 50%;
+			margin: 0 auto;
 		}
 		.fields {
+			flex-direction: column;
 			&__line {
 				width: 100%;
 				display: flex;
