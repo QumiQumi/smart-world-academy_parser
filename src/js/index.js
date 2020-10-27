@@ -63,14 +63,31 @@ $(document).ready(function () {
 					checkboxArray = field.input[key];
 				}
 			}
-			if (!needCheckboxes)
+			if (!needCheckboxes) {
+				var className =
+					field.label == null
+						? "fields__line-center"
+						: "fields__line";
+				if (field.input.type == "checkbox")
+					className = "fields__line-left";
+
 				$("<div>")
-					.attr({ class: "fields__line" })
-					.append(
-						$("<label/>")
-							.text(field.label)
-							.attr({ for: "input-" + i })
-					)
+					.attr({ class: className })
+					.append(function () {
+						if (field.label != null)
+							return $("<label/>")
+								.text(field.label)
+								.attr({ for: "input-" + i });
+					})
+					.append(function () {
+						if (field.input.type == "file")
+							return $("<label>")
+								.text("Выберите файл(ы)")
+								.attr({
+									for: "input-" + i,
+									class: "input-file",
+								});
+					})
 					.append(() => {
 						var filetypes =
 							field.input.filetype != null
@@ -91,6 +108,14 @@ $(document).ready(function () {
 						)
 							placeholder = field.input.mask;
 						else placeholder = field.input.placeholder;
+
+						if (field.input.type == "textarea")
+							return $("<textarea>").attr({
+								required: field.input.required,
+								placeholder: placeholder,
+								id: "input-" + i,
+							});
+
 						return $("<input/>").attr({
 							type: inputType,
 							required: field.input.required,
@@ -105,6 +130,7 @@ $(document).ready(function () {
 						});
 					})
 					.appendTo(fieldsForm);
+			}
 			// Проверка - Есть ли чекбоксы в инпуте
 			// если в field.input есть массив (не filetype) - значит это чекбоксы
 			else {
@@ -131,6 +157,7 @@ $(document).ready(function () {
 									type: "checkbox",
 									name: "checkbox" + i,
 									id: element,
+									value: element,
 								})
 							)
 							.append(
@@ -221,11 +248,11 @@ $(document).ready(function () {
 						type: ref.input.type,
 						required: ref.input.required,
 						checked: ref.input.checked,
-						id: "input-" + i,
+						id: "input-ref",
 					});
 				} else {
 					return $("<label>")
-						.attr({ for: "input-" + i })
+						.attr({ for: "input-ref" })
 						.append($("<span>").text(ref["text without ref"]))
 						.append(
 							$("<a>").text(ref.text).attr({ href: ref.ref })
