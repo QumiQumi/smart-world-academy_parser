@@ -16,14 +16,18 @@
 	<div class="container">
 		<form id="select-form" method="get">
 			<div class="input-files">
-				<label for="files">Выберете файлы</label>
+				<label for="input-files">Выберете файлы</label>
 				<input type="file" name="input-files" id="input-files" multiple accept=".json">
 				<span class="input-files__input-hidden">Выберите пожалуйста файлы</span>
 			</div>
 
-			<div class="select-input">
+			<div class="select">
 				<label for="select">Какой файл распарсить?</label>
-				<select id="select" name="select"></select>
+
+				<div class="select-input">
+					<select id="select" name="select"></select>
+				</div>
+
 				<input type="submit" value="Выбрать">
 			</div>
 

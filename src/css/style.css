@@ -29,6 +29,21 @@ body #select-form .input-files {
   border-bottom: solid 1px gray;
 }
 
+body #select-form .input-files input[type="file"] {
+  display: none;
+}
+
+body #select-form .input-files label {
+  background: transparent;
+  border: 1px solid #232323;
+  position: relative;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  padding: 5px 10px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+
 body #select-form .input-files__input-hidden {
   visibility: hidden;
 }
@@ -36,6 +51,31 @@ body #select-form .input-files__input-hidden {
 body #select-form .input-files__input-warn {
   visibility: visible;
   color: red;
+}
+
+body #select-form .select-input {
+  position: relative;
+}
+
+body #select-form .select-input::after {
+  content: "";
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: rotate(45deg);
+  border-bottom: solid 1px gray;
+  border-right: solid 1px gray;
+  z-index: 1;
+  text-align: center;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+body #select-form .select-input select {
+  appearance: none;
+  padding: 10px 35px 10px 15px;
 }
 
 body #parse-form {
@@ -82,6 +122,21 @@ body #parse-form .buttons {
 
 body #parse-form .refs {
   justify-content: center;
+}
+
+body input[type="submit"],
+body button,
+body select {
+  font-family: "Montserrat", sans-serif;
+  color: #232323;
+  background: transparent;
+  border: 1px solid #232323;
+  position: relative;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  padding: 10px 15px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 .container {

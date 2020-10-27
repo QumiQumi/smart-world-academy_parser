@@ -21,14 +21,56 @@ body {
 				margin-top: 1em;
 			}
 		}
+
 		.input-files {
 			border-bottom: solid 1px gray;
+			input[type="file"] {
+				display: none;
+			}
+			label {
+				// color: #232323;
+
+				background: transparent;
+				border: 1px solid #232323;
+				position: relative;
+				font-size: 14px;
+				letter-spacing: 0.1em;
+				padding: 5px 10px;
+				transition: 0.2s ease-in-out;
+				cursor: pointer;
+			}
 			&__input-hidden {
 				visibility: hidden;
 			}
 			&__input-warn {
 				visibility: visible;
 				color: red;
+			}
+		}
+		.select-input {
+			position: relative;
+
+			&::after {
+				content: "";
+				position: absolute;
+				right: 15px;
+				top: 50%;
+				transform: rotate(45deg);
+				border-bottom: solid 1px gray;
+				border-right: solid 1px gray;
+
+				z-index: 1;
+				text-align: center;
+				width: 10px;
+				height: 10px;
+				pointer-events: none;
+				box-sizing: border-box;
+			}
+			select {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				padding: 10px 35px 10px 15px;
 			}
 		}
 	}
@@ -74,11 +116,26 @@ body {
 			justify-content: center;
 		}
 	}
+	input[type="submit"],
+	button,
+	select {
+		font-family: "Montserrat", sans-serif;
+		color: #232323;
+		background: transparent;
+		border: 1px solid #232323;
+		position: relative;
+		font-size: 14px;
+		letter-spacing: 0.1em;
+		padding: 10px 15px;
+		transition: 0.2s ease-in-out;
+		cursor: pointer;
+	}
 }
 .container {
 	width: 600px;
 	margin: 0 auto;
 }
+
 @media (max-width: 650px) {
 	.container {
 		width: fit-content;
