@@ -143,18 +143,20 @@ $(document).ready(function () {
 							.text(field.label)
 							.attr({ class: "fields__line" })
 					);
-				var classForLabel = (field.input.type = "color"
-					? "fields__color"
-					: "");
+				var classForLabel =
+					field.input.type == "color" ? "fields__color" : "";
+				var inputType =
+					field.input.type == "color" ? "radio" : "checkbox";
 
 				checkboxArray.forEach((element) => {
+					var labelText = field.input.type == "color" ? "" : element;
 					checkboxes.append(
 						$("<div>")
 							.attr({ class: "fields__checkbox" })
 
 							.append(
 								$("<input/>").attr({
-									type: "checkbox",
+									type: inputType,
 									name: "checkbox" + i,
 									id: element,
 									value: element,
@@ -167,7 +169,7 @@ $(document).ready(function () {
 										class: classForLabel,
 									})
 									.append(
-										$("<span>").text(element).css({
+										$("<span>").text(labelText).css({
 											"background-color": element,
 										})
 									)

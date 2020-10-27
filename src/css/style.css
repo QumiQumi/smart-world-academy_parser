@@ -34,7 +34,7 @@ body #select-form .input-files input[type="file"] {
 }
 
 body #select-form .input-files label {
-  background: transparent;
+  background-color: rgba(192, 239, 245, 0.692);
   border: 1px solid #232323;
   position: relative;
   font-size: 14px;
@@ -42,6 +42,8 @@ body #select-form .input-files label {
   padding: 5px 10px;
   transition: 0.2s ease-in-out;
   cursor: pointer;
+  box-sizing: border-box;
+  width: 200px;
 }
 
 body #select-form .input-files__input-hidden {
@@ -118,6 +120,8 @@ body #parse-form .fields__line-left input {
 }
 
 body #parse-form .fields__checkboxes .fields__checkbox {
+  display: flex;
+  align-items: center;
   margin-top: 1em;
 }
 
@@ -125,13 +129,30 @@ body #parse-form .fields__checkboxes input[type="checkbox"] {
   margin-right: 1em;
 }
 
+body #parse-form .fields__checkboxes input[type="radio"] {
+  margin-right: 1em;
+  margin-top: 0;
+}
+
+body #parse-form .fields__color {
+  display: flex;
+  align-items: center;
+}
+
+body #parse-form .fields__color span {
+  width: 15px;
+  height: 15px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
 body #parse-form .fields input[type="file"] {
   display: none;
 }
 
 body #parse-form .fields .input-file {
-  width: 12em;
-  background: transparent;
+  width: 200px;
+  background-color: rgba(192, 239, 245, 0.692);
   border: 1px solid #232323;
   position: relative;
   font-size: 14px;
@@ -139,11 +160,13 @@ body #parse-form .fields .input-file {
   padding: 5px 10px;
   transition: 0.2s ease-in-out;
   cursor: pointer;
+  font-size: 14px;
+  box-sizing: border-box;
 }
 
 body #parse-form .buttons {
-  justify-content: space-around;
-  max-width: 50%;
+  justify-content: space-between;
+  max-width: 80%;
   margin: 2em auto 0;
 }
 
@@ -167,6 +190,8 @@ body select {
   padding: 0.5em 1em;
   cursor: pointer;
   outline: none;
+  width: 200px;
+  box-sizing: border-box;
 }
 
 body input[type="text"],
@@ -182,7 +207,8 @@ body textarea {
   position: relative;
   padding: 0.5em 1em;
   outline: none;
-  width: 12em;
+  width: 200px;
+  box-sizing: border-box;
 }
 
 body input[type="number"] {
@@ -193,7 +219,13 @@ body input[type="number"] {
 body textarea {
   resize: vertical;
   min-height: 5em;
-  width: 12em;
+  width: 200px;
+  box-sizing: border-box;
+}
+
+body input[type="submit"],
+body button {
+  background-color: #ffe3ca;
 }
 
 .container {

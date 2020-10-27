@@ -29,8 +29,8 @@ body {
 			}
 			label {
 				// color: #232323;
+				background-color: rgba(192, 239, 245, 0.692);
 
-				background: transparent;
 				border: 1px solid #232323;
 				position: relative;
 				font-size: 14px;
@@ -38,6 +38,8 @@ body {
 				padding: 5px 10px;
 				transition: 0.2s ease-in-out;
 				cursor: pointer;
+				box-sizing: border-box;
+				width: 200px;
 			}
 			&__input-hidden {
 				visibility: hidden;
@@ -116,11 +118,30 @@ body {
 			}
 			&__checkboxes {
 				// width: 100%;
+
 				.fields__checkbox {
+					display: flex;
+
+					align-items: center;
 					margin-top: 1em;
 				}
 				input[type="checkbox"] {
 					margin-right: 1em;
+				}
+				input[type="radio"] {
+					margin-right: 1em;
+					margin-top: 0;
+				}
+			}
+			&__color {
+				display: flex;
+
+				align-items: center;
+				span {
+					width: 15px;
+					height: 15px;
+					border-radius: 5px;
+					display: inline-block;
 				}
 			}
 			input[type="file"] {
@@ -128,8 +149,9 @@ body {
 			}
 			.input-file {
 				// color: #232323;
-				width: 12em;
-				background: transparent;
+				width: 200px;
+
+				background-color: rgba(192, 239, 245, 0.692);
 				border: 1px solid #232323;
 				position: relative;
 				font-size: 14px;
@@ -137,11 +159,13 @@ body {
 				padding: 5px 10px;
 				transition: 0.2s ease-in-out;
 				cursor: pointer;
+				font-size: 14px;
+				box-sizing: border-box;
 			}
 		}
 		.buttons {
-			justify-content: space-around;
-			max-width: 50%;
+			justify-content: space-between;
+			max-width: 80%;
 			margin: 2em auto 0;
 		}
 		.refs {
@@ -164,6 +188,9 @@ body {
 		padding: 0.5em 1em;
 		cursor: pointer;
 		outline: none;
+		// font-size: 14px;
+		width: 200px;
+		box-sizing: border-box;
 	}
 	input[type="text"],
 	input[type="number"],
@@ -178,7 +205,9 @@ body {
 		position: relative;
 		padding: 0.5em 1em;
 		outline: none;
-		width: 12em;
+		width: 200px;
+		// font-size: 14px;
+		box-sizing: border-box;
 	}
 	input[type="number"] {
 		outline: none;
@@ -187,7 +216,12 @@ body {
 	textarea {
 		resize: vertical;
 		min-height: 5em;
-		width: 12em;
+		width: 200px;
+		box-sizing: border-box;
+	}
+	input[type="submit"],
+	button {
+		background-color: rgb(255, 227, 202);
 	}
 }
 .container {
