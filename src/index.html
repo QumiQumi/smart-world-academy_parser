@@ -5,29 +5,35 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
 	<link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
 
-	<form id="select-form" method="get">
-		<div class="input-files">
-			<label for="files">Выберете файлы</label>
-			<input type="file" name="input-files" id="input-files" multiple accept=".json">
-		</div>
+	<div class="container">
+		<form id="select-form" method="get">
+			<div class="input-files">
+				<label for="files">Выберете файлы</label>
+				<input type="file" name="input-files" id="input-files" multiple accept=".json">
+				<span class="input-files__input-hidden">Выберите пожалуйста файлы</span>
+			</div>
 
-		<div class="select-input">
-			<label for="select">Какой файл распарсить?</label>
-			<select id="select" name="select"></select>
-			<input type="submit" value="Выбрать">
-		</div>
+			<div class="select-input">
+				<label for="select">Какой файл распарсить?</label>
+				<select id="select" name="select"></select>
+				<input type="submit" value="Выбрать">
+			</div>
 
-	</form>
-	<form id="parse-form">
-		<div class="buttons" id="buttons"></div>
-		<div class="fields" id="fields"></div>
-		<div class="refs" id="refs"></div>
-	</form>
+		</form>
+		<form id="parse-form">
+			<div class="fields" id="fields"></div>
+			<div class="buttons" id="buttons"></div>
+			<div class="refs" id="refs"></div>
+		</form>
+	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="./js/files.js"></script>
 	<script src="./js/index.js"></script>

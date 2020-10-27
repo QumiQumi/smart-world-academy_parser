@@ -17,9 +17,18 @@ $(document).ready(function () {
 	$("#select-form").submit((event) => {
 		event.preventDefault();
 		var select = $("#select");
-		console.log(files);
+		var span = $(".input-files").children("span");
+		span.removeClass("input-files__input-warn");
+		span.addClass("input-files__input-hidden");
+
+		if (select.val() == null) {
+			span.addClass("input-files__input-warn");
+			span.removeClass("input-files__input-hidden");
+			return;
+		}
+		// console.log(files);
 		var file = files.find((file) => file.name == select.val());
-		console.log(file);
+		// console.log(file);
 		makeForm(file);
 	});
 
@@ -45,63 +54,24 @@ $(document).ready(function () {
 		if (fieldsArray == null) return;
 
 		fieldsArray.forEach((field, i) => {
-			$("<div>")
-				.attr({ class: "fields__line" })
-				.append(
-					$("<label/>")
-						.text(field.label)
-						.attr({ for: "input-" + i })
-				)
+			var needCheckboxes = false;
+			var checkboxArray = [];
 
-				.append(() => {
-					var needCheckboxes = false;
-					var checkboxArray = [];
-
-					for (var key in field.input) {
-						if (
-							Array.isArray(field.input[key]) &&
-							key != "filetype"
-						) {
-							needCheckboxes = true;
-							checkboxArray = field.input[key];
-						}
-					}
-					// если в field.input есть массив - значит это чекбоксы
-					if (needCheckboxes) {
-						var checkboxes = $("<div>").attr({
-							class: "fields__checkboxes",
-						});
-						var classForLabel = (field.input.type = "color"
-							? "fields__color"
-							: "");
-
-						checkboxArray.forEach((element) => {
-							checkboxes.append(
-								$("<div>")
-									.attr({ class: "fields__checkbox" })
-									.append(
-										$("<input/>").attr({
-											type: "checkbox",
-											name: "checkbox" + i,
-											id: element,
-										})
-									)
-									.append(
-										$("<label/>")
-											.attr({
-												for: element,
-												class: classForLabel,
-											})
-											.append(
-												$("<span>").text(element).css({
-													"background-color": element,
-												})
-											)
-									)
-							);
-						});
-						return checkboxes;
-					} else {
+			for (var key in field.input) {
+				if (Array.isArray(field.input[key]) && key != "filetype") {
+					needCheckboxes = true;
+					checkboxArray = field.input[key];
+				}
+			}
+			if (!needCheckboxes)
+				$("<div>")
+					.attr({ class: "fields__line" })
+					.append(
+						$("<label/>")
+							.text(field.label)
+							.attr({ for: "input-" + i })
+					)
+					.append(() => {
 						var filetypes =
 							field.input.filetype != null
 								? field.input.filetype.map((i) => "." + i)
@@ -133,9 +103,52 @@ $(document).ready(function () {
 							minlength: maxLength,
 							min: "0",
 						});
-					}
-				})
-				.appendTo(fieldsForm);
+					})
+					.appendTo(fieldsForm);
+			// Проверка - Есть ли чекбоксы в инпуте
+			// если в field.input есть массив (не filetype) - значит это чекбоксы
+			else {
+				var checkboxes = $("<div>")
+					.attr({
+						class: "fields__checkboxes",
+					})
+					.append(
+						$("<div>")
+							.text(field.label)
+							.attr({ class: "fields__line" })
+					);
+				var classForLabel = (field.input.type = "color"
+					? "fields__color"
+					: "");
+
+				checkboxArray.forEach((element) => {
+					checkboxes.append(
+						$("<div>")
+							.attr({ class: "fields__checkbox" })
+
+							.append(
+								$("<input/>").attr({
+									type: "checkbox",
+									name: "checkbox" + i,
+									id: element,
+								})
+							)
+							.append(
+								$("<label/>")
+									.attr({
+										for: element,
+										class: classForLabel,
+									})
+									.append(
+										$("<span>").text(element).css({
+											"background-color": element,
+										})
+									)
+							)
+					);
+				});
+				fieldsForm.append(checkboxes);
+			}
 		});
 		addKeypressMaskListeners();
 		// Обработка маски input
@@ -227,13 +240,13 @@ $(document).ready(function () {
 	function fillDropdown() {
 		$("#select").empty();
 		for (let i = 0; i < files.length; i++) {
-			console.log(files[i]);
 			$("#select").append(
 				$("<option>").text(files[i].name).val(files[i].name)
 			);
 		}
 	}
 
+	// Считывает файлы с input и выводит их в select
 	function addFilesChangeEventListener() {
 		$("#input-files").change(function () {
 			var upload = $(this).get(0).files;
