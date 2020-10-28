@@ -162,10 +162,11 @@ body #parse-form .fields .input-file {
   cursor: pointer;
   font-size: 14px;
   box-sizing: border-box;
+  text-align: center;
 }
 
 body #parse-form .buttons {
-  justify-content: space-between;
+  justify-content: space-around;
   max-width: 80%;
   margin: 2em auto 0;
 }
