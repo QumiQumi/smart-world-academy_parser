@@ -82,7 +82,7 @@ $(document).ready(function () {
 					.append(function () {
 						if (field.input.type == "file")
 							return $("<label>")
-								.text("Выберите файл(ы)")
+								.text("Выберете файл(ы)")
 								.attr({
 									for: "input-" + i,
 									class: "input-file",
