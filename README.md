@@ -1,4 +1,3 @@
-# smart-world-academy_parser
+# JSON парсер
 
-JSON парсер
 Запустить index.html в /src
