@@ -15,14 +15,18 @@ body #select-form {
 body #select-form > div {
   padding: 1em;
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 }
 
-body #select-form > div input,
+body #select-form > div button,
 body #select-form > div select {
   margin-top: 1em;
+}
+
+body #select-form > div input {
+  margin-top: 2em;
 }
 
 body #select-form .input-files {
@@ -96,6 +100,7 @@ body #parse-form > div {
 
 body #parse-form .fields {
   flex-direction: column;
+  text-align: center;
 }
 
 body #parse-form .fields__line {
@@ -114,8 +119,14 @@ body #parse-form .fields__line-center {
   margin-top: 1em;
 }
 
-body #parse-form .fields__line-left input {
+body #parse-form .fields__line-left {
+  display: flex;
+  justify-content: start;
+  align-items: center;
   margin-top: 1em;
+}
+
+body #parse-form .fields__line-left input {
   margin-left: 1em;
 }
 
@@ -175,7 +186,12 @@ body #parse-form .refs {
   justify-content: center;
 }
 
-body #parse-form .refs a {
+body #parse-form .refs__line {
+  display: flex;
+  align-items: center;
+}
+
+body #parse-form .refs__line a {
   margin-left: 0.2em;
 }
 

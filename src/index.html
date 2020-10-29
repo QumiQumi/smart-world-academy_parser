@@ -17,7 +17,7 @@
 		<form id="select-form" method="get">
 			<div class="input-files">
 				<label for="input-files">Выберете файл(ы)</label>
-				<input type="file" name="input-files" id="input-files" multiple accept=".json">
+				<input type="file" name="input-files" id="input-files" multiple accept=".json,.js">
 				<span class="input-files__input-hidden">Выберите пожалуйста файлы</span>
 			</div>
 
@@ -29,11 +29,12 @@
 				</div>
 
 				<input type="submit" value="Выбрать">
+				<button class="button-clear" id="button-clear"> Очистить</button>
 			</div>
 
 		</form>
 		<form id="parse-form">
-			<div class="fields" id="fields"></div>
+			<div class="fields" id="fields">Выберите файл для создания формы</div>
 			<div class="buttons" id="buttons"></div>
 			<div class="refs" id="refs"></div>
 		</form>
